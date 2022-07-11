@@ -50,9 +50,16 @@ function clearGrid() {
     }
 }
 
-function listenForTouch() {
-    const cells = document.querySelector('.cell');
-    console.log(cells);
+function pencilOn() {
+    const cells = document.querySelectorAll('.cell');
+    
+    cells.forEach((div) => {
+        div.addEventListener('mouseover', () => {
+            console.log(div.id);
+            div.style.backgroundColor = 'black';
+            //document.querySelector(`#${div.id}`).style.backgroundColor = 'black';
+        });
+    });
 }
 
 
