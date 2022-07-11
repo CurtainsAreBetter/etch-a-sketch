@@ -13,16 +13,6 @@ so if there were 5 rows/ columns. Each would be 20%
 
 */
 
-// get container
-//const gridContainer = document.querySelector('.grid-container');
-
-// cell per width/ height
-let cellCount = 16;
-
-// add (16 * 16) divs as children of the outline
-// give them an id of their co-ordinate 
-// so at (0,0) you'd have <div id="0-0">
-
 // create grid function
 function createGrid(size) {
     const gridContainer = document.querySelector('.grid-container');
@@ -30,7 +20,7 @@ function createGrid(size) {
     // is opposite of our normal grid and I don't want to do
     // the mental work afterwards if I can just do it now
     for (let y=size; y > 0; y--) {
-        for (let x=size; x > 0; x--) {
+        for (let x = 1; x < (Number(size) + 1); x++) {
             // create child div
             const div = document.createElement('div');
             // give it id='x-y' and class='cell'
@@ -38,22 +28,31 @@ function createGrid(size) {
             div.setAttribute('class', 'cell');
             // load it to gridContainer
             gridContainer.appendChild(div);
-
-
         }
     }
     // set grid-template-columns and rows
     // get ratio
-    const ratio = Math.floor(100/size);
+    const ratio = 100/size;
     console.log(ratio);
-    // add ratio to gridContainer size number of times
-    // twice, once for column, once for row
+    // add ratio to grid template size number of times
     let ratioString = '';
     for (let i=0; i < size; i++) {
         ratioString += `${ratio}% `
     }
     gridContainer.style.gridTemplateRows = ratioString;
     gridContainer.style.gridTemplateColumns = ratioString;
+}
+
+function clearGrid() {
+    const gridContainer = document.querySelector('.grid-container');
+    while (gridContainer.firstChild) {
+        gridContainer.removeChild(gridContainer.lastChild);
+    }
+}
+
+function listenForTouch() {
+    const cells = document.querySelector('.cell');
+    console.log(cells);
 }
 
 
