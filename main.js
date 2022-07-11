@@ -57,9 +57,22 @@ function pencilOn() {
         div.addEventListener('mouseover', () => {
             console.log(div.id);
             div.style.backgroundColor = 'black';
-            //document.querySelector(`#${div.id}`).style.backgroundColor = 'black';
         });
     });
 }
 
+function sizeButton() {
+    document.querySelector('#set-size')
+            .addEventListener('click', () => {
+                // push prompt
+                let num = prompt("Enter a number (1-100).");
+                // if number valid, do the do. Otherwise don't
+                if (num <= 100 || num > 0) {
+                    clearGrid();
+                    createGrid(num);
+                    pencilOn();
+                } else { return 'ERROR' }
+            });
+}
 
+sizeButton();
